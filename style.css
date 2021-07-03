@@ -1,0 +1,32 @@
+form {
+    border: 1px solid black;
+    width: 40%;
+    padding-top: 15px;
+    padding-bottom: 35px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+label {
+    display: block;
+    margin: 5px 0 5px 0;
+}
+
+button[type="submit"] {
+    margin-top: 10px;
+}
+
+#exercise-1 {
+    width: 20%;
+    height: 30vh;
+    overflow-y: scroll;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+}
+
+#exercise-2 {
+    color: blue;
+    margin-left: auto;
+    margin-right: auto;
+}
