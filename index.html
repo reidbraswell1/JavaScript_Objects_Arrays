@@ -26,10 +26,12 @@
         <h4>Exercise Entry Form</h4>
         <label for="array">Enter array: </label>
         <input type="text" name="array" id="array" placeholder="nn,nn,nn,nn,...">
-        <label for="userName">User Name:</label>
-        <input type="text" id="userName" name="userName">
-        <label for="age">Enter age:</label>
-        <input type="number" name="age" id="age" min="1" max="100">
+        <label for="bookTitle">Book Title:</label>
+        <input type="text" id="bookTitle" name="bookTitle" required>
+        <label for="numberOfPages">Number of Pages:</label>
+        <input type="number" name="numberOfPages" id="numberOfPages" min="1" max="1000">
+        <label for="numberTimesRead">Number of Times Read:</label>
+        <input for="numberTimesRead" type="number" name="numberOfTimesRead" min="1" max="100">
         <br>
         <button type="submit" value="Submit">Submit</button>
         <p id="error"></p>
