@@ -1,28 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JavaScript Objects and Arrays</title>
-  </head>
-  <body>
-    <main
-      style="
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <title>JavaScript Objects and Arrays</title>
+</head>
+
+<body>
+  <main style="
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
-      "
-    >
-      <div>
-        <h1>JavaScript Objects and Arrays</h1>
-        <p>
-          Open the Browser Console to view your work (Right-Click => Inspect or
-          fn+F12)
-        </p>
-      </div>
-    </main>
+      ">
+    <div>
+      <h1>JavaScript Objects and Arrays</h1>
+      <p>
+        Open the Browser Console to view your work (Right-Click => Inspect or
+        fn+F12)
+      </p>
+      <!-- Form Output -->
+      <form id="form" method="POST" action="javascript:controller(this);" onsubmit="return validateForm()">
+        <h4>Exercise Entry Form</h4>
+        <label for="array">Enter array: </label>
+        <input type="text" name="array" id="array" placeholder="nn,nn,nn,nn,...">
+        <label for="userName">User Name:</label>
+        <input type="text" id="userName" name="userName">
+        <label for="age">Enter age:</label>
+        <input type="number" name="age" id="age" min="1" max="100">
+        <br>
+        <button type="submit" value="Submit">Submit</button>
+      </form>
+      <!-- Exercise Output -->
+      <h4>Exercise 1 - Ignore Even - Output</h4>
+      <p id=exercise-1>
+      </p>
+      <h4>Exercise 2 - checkAge Output</h4>
+      <p id=exercise-2>
+      </p>
 
-    <script src="app.js"></script>
-  </body>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+
 </html>
