@@ -1,5 +1,21 @@
 console.log("Hello World!\n==========\n");
 
+// Static Book
+// The Hobbit by J.R.R Tolkien, 295 pages, read 3 times
+let books = [
+  { title: "The Hobbit by J.R.R. Tolkein", pages: 295, readCount: 3 },
+];
+
+let book = {
+  title: "",
+  pages: 0,
+  readCount: 0,
+  bookInfo: function () {
+    let bookString = `${this.title}, ${this.pages} pages, read ${this.readCount} times.`;
+    console.log(bookString);
+  },
+};
+
 // Constants
 function constants() {
   const DOM_ElementIDs = {
@@ -23,30 +39,24 @@ function constants() {
     exerciseTwoId: function () {
       let id = document.getElementById(this.exerciseTwoElementId);
       return id;
-    }
+    },
   };
   return DOM_ElementIDs;
 }
 
 // Book object
-function bookProcessing(titleP="", pagesP=0, readCountP=0, bookInfoP = []) {
-  if (titleP.length == 0 || pagesP <= 0 ||  readCountP <= 0) {
+function bookProcessing(titleP = "", pagesP = 0, readCountP = 0) {
+  console.log("Begin bookProcessing");
+
+  if (titleP.length == 0 || pagesP <= 0 || readCountP <= 0) {
     return null;
+  } else {
+    book.title = titleP;
+    book.pages = pagesP * 1;
+    book.readCount = readCountP * 1;
+    books.push(book);
   }
-  let books = [
-  {
-    title: titleP,
-    pages: pagesP,
-    readCount: readCountP,
-    bookInfoAcumulator: bookInfoP,
-    // Return an array of strings containing book info
-    bookInfo: function () {
-      let bookString = `${this.title}, ${this.pages} pages, read ${this.readCount} times.`;
-      bookInfoAcumulator.push(bookString);
-      return bookInfoP;
-    },
-  }];
-  return book;
+  return book.bookInfo();
 }
 
 function validateForm() {
@@ -57,7 +67,7 @@ function validateForm() {
 
   console.log(`Array value = ${array.value}`);
   let arrayString = array.value;
-  if(arrayString.indexOf(constants().arraySeparatorChar) < 0) {
+  if (arrayString.indexOf(constants().arraySeparatorChar) < 0) {
     console.log(constants().errorSeparatorMessage);
     constants().errorId().innerText = constants().errorSeparatorMessage;
     constants().errorId().style.color = constants().errorStyleColor;
@@ -69,8 +79,14 @@ function validateForm() {
   arrayNum.forEach(parseArray);
   function parseArray(element, index, array) {
     if (isNaN(element)) {
-      console.log(`${constants().errorInvalidElementMessage1} "${element}" ${constants().errorInvalidElementMessage2} ${index}`);
-      constants().errorId().innerText = `${constants().errorInvalidElementMessage1} "${element}" ${constants().errorInvalidElementMessage2} ${index}`;
+      console.log(
+        `${constants().errorInvalidElementMessage1} "${element}" ${
+          constants().errorInvalidElementMessage2
+        } ${index}`
+      );
+      constants().errorId().innerText = `${
+        constants().errorInvalidElementMessage1
+      } "${element}" ${constants().errorInvalidElementMessage2} ${index}`;
       constants().errorId().style.color = constants().errorStyleColor;
       error = true;
     }
@@ -85,10 +101,16 @@ function controller(obj) {
   console.log("Begin controller");
   let arrayString = array.value;
   let arrayNum = arrayString.split(",");
-  sumArray(arrayNum)
+  arraySum(arrayNum);
+  let bks = bookProcessing(
+    bookTitle.value,
+    numberOfPages.value,
+    numberTimesRead.value
+  );
+  console.log(`Books = ${bks}`);
 }
 
-function sumArray(array) {
+function arraySum(array) {
   let sum = 0;
   // Loop through the array and sum the elements
   let arrayString = array.toString();
@@ -99,10 +121,9 @@ function sumArray(array) {
   // Print and log the sum to the log and screen
   console.log(`SUM - [${arrayString}] = ${sum}`);
   let text = document.createTextNode(`SUM - [${arrayString}] = ${sum}`);
-  let brElement = document.createElement('br');
+  let brElement = document.createElement("br");
   constants().exerciseOneId().appendChild(text);
   constants().exerciseOneId().appendChild(brElement);
-
 }
 
 // Function to add or get the books from the book object.
