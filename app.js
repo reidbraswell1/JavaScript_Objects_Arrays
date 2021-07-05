@@ -12,7 +12,7 @@ let book = {
   readCount: 0,
   bookInfo: function () {
     let bookString = `${this.title}, ${this.pages} pages, read ${this.readCount} times.`;
-    console.log(bookString);
+    return bookString;
   },
 };
 
@@ -107,7 +107,7 @@ function controller(obj) {
     numberOfPages.value,
     numberTimesRead.value
   );
-  console.log(`Books = ${bks}`);
+  console.log(`Book Info = ${bks}`);
 }
 
 function arraySum(array) {
