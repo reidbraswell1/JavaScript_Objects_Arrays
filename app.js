@@ -4,12 +4,26 @@ console.log("Hello World!\n==========\n");
 function constants() {
   const DOM_ElementIDs = {
     errorElementId: "error",
+    exerciseOneElementId: "exercise-1",
+    exerciseTwoElementId: "exercise-2",
     errorStyleColor: "red",
     normalStyleColor: "black",
+    arraySeparatorChar: ",",
+    errorSeparatorMessage: "Invalid array element separator must be a comma",
+    errorInvalidElementMessage1: "Invalid array element",
+    errorInvalidElementMessage2: "at index",
     errorId: function () {
       let id = document.getElementById(this.errorElementId);
       return id;
     },
+    exerciseOneId: function () {
+      let id = document.getElementById(this.exerciseOneElementId);
+      return id;
+    },
+    exerciseTwoId: function () {
+      let id = document.getElementById(this.exerciseTwoElementId);
+      return id;
+    }
   };
   return DOM_ElementIDs;
 }
@@ -42,21 +56,52 @@ function validateForm() {
 
   console.log(`Array value = ${array.value}`);
   let arrayString = array.value;
-  let arrayNum = arrayString.split(",");
+  if(arrayString.indexOf(constants().arraySeparatorChar) == 0) {
+    console.log(constants().errorSeparatorMessage);
+    constants().errorId().innerText = constants().errorSeparatorMessage;
+    constants().errorId().style.color = constants().errorStyleColor;
+    return false;
+  }
+  let arrayNum = arrayString.split(constants().arraySeparatorChar);
   console.log(`Array = ${arrayNum}`);
+  let error = false;
   arrayNum.forEach(parseArray);
   function parseArray(element, index, array) {
     if (isNaN(element)) {
-      console.log(`Invalid array element "${element}" at index ${index}`);
-      error.innerText = `Invalid array element "${element}" at index ${index}`;
-      error.style.color = constants().errorStyleColor;
+      console.log(`${constants().errorInvalidElementMessage1} "${element}" ${constants().errorInvalidElementMessage2} ${index}`);
+      constants().errorId().innerText = `${constants().errorInvalidElementMessage1} "${element}" ${constants().errorInvalidElementMessage2} ${index}`;
+      constants().errorId().style.color = constants().errorStyleColor;
+      error = true;
     }
   }
-  return false;
+  if (error) {
+    return false;
+  }
+  return true;
 }
 
 function controller(obj) {
   console.log("Begin controller");
+  let arrayString = array.value;
+  let arrayNum = arrayString.split(",");
+  sumArray(arrayNum)
+}
+
+function sumArray(array) {
+  let sum = 0;
+  // Loop through the array and sum the elements
+  let arrayString = array.toString();
+  array.forEach((element, index, array) => {
+    // Coerce elements to a number
+    sum += element * 1;
+  });
+  // Print and log the sum to the log and screen
+  console.log(`SUM - [${arrayString}] = ${sum}`);
+  let text = document.createTextNode(`SUM - [${arrayString}] = ${sum}`);
+  let brElement = document.createElement('br');
+  constants().exerciseOneId().appendChild(text);
+  constants().exerciseOneId().appendChild(brElement);
+
 }
 
 // Function to add or get the books from the book object.
