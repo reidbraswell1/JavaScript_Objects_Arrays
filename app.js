@@ -33,7 +33,8 @@ function bookProcessing(titleP="", pagesP=0, readCountP=0, bookInfoP = []) {
   if (titleP.length == 0 || pagesP <= 0 ||  readCountP <= 0) {
     return null;
   }
-  let book = {
+  let books = [
+  {
     title: titleP,
     pages: pagesP,
     readCount: readCountP,
@@ -44,7 +45,7 @@ function bookProcessing(titleP="", pagesP=0, readCountP=0, bookInfoP = []) {
       bookInfoAcumulator.push(bookString);
       return bookInfoP;
     },
-  };
+  }];
   return book;
 }
 
