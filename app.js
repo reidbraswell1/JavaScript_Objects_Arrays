@@ -56,7 +56,7 @@ function validateForm() {
 
   console.log(`Array value = ${array.value}`);
   let arrayString = array.value;
-  if(arrayString.indexOf(constants().arraySeparatorChar) == 0) {
+  if(arrayString.indexOf(constants().arraySeparatorChar) < 0) {
     console.log(constants().errorSeparatorMessage);
     constants().errorId().innerText = constants().errorSeparatorMessage;
     constants().errorId().style.color = constants().errorStyleColor;
