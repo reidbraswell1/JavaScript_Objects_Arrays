@@ -22,7 +22,9 @@
         fn+F12)
       </p>
       <!-- Form Output -->
-      <form id="form" method="POST" action="javascript:controller(this);" onsubmit="return validateForm()">
+      <form id="form" method="POST"
+        action="javascript:controller(array.value, bookTitle.value, numberOfPages.value, numberTimesRead.value);"
+        onsubmit="return validateForm(array.value)">
         <h4>Exercise Entry Form</h4>
         <label for="array">Enter array: </label>
         <input type="text" name="array" id="array" placeholder="nn,nn,nn,nn,...">
@@ -45,14 +47,15 @@
       </p>
       <h4>Exercise 2 - Comulative Books Entered into form.</h4>
       <table id="table">
-        <thead>
+        <thead id="thead">
           <tr>
+            <th>Item</th>
             <th>Book Name</th>
             <th>Pages</th>
             <th>Nbr Times Read</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="tbody">
         </tbody>
       </table>
 
