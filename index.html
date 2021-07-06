@@ -21,13 +21,14 @@
         Open the Browser Console to view your work (Right-Click => Inspect or
         fn+F12)
       </p>
+      <h5>For a single array value enter as n,</h5>
       <!-- Form Output -->
       <form id="form" method="POST"
         action="javascript:controller(array.value, bookTitle.value, numberOfPages.value, numberTimesRead.value);"
         onsubmit="return validateForm(array.value)">
         <h4>Exercise Entry Form</h4>
         <label for="array">Enter array: </label>
-        <input type="text" name="array" id="array" placeholder="nn,nn,nn,nn,...">
+        <input type="text" name="array" id="array" placeholder="nn,nn,nn,nn,... or n,">
         <label for="bookTitle">Book Title:</label>
         <input type="text" id="bookTitle" name="bookTitle" required>
         <label for="numberOfPages">Number of Pages:</label>
