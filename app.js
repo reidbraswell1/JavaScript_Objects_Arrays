@@ -22,8 +22,10 @@ function constants() {
     errorElementId: "error",
     exerciseOneElementId: "exercise-1",
     exerciseTwoElementId: "exercise-2",
+    formElementId: "form",
     errorStyleColor: "red",
-    normalStyleColor: "black",
+    blackStyleColor: "black",
+    blueStyleColor: "blue",
     arraySeparatorChar: ",",
     errorSeparatorMessage: "Invalid array element separator must be a comma",
     errorInvalidElementMessage1: "Invalid array element",
@@ -40,6 +42,10 @@ function constants() {
       let id = document.getElementById(this.exerciseTwoElementId);
       return id;
     },
+    formId: function () {
+      let id = document.getElementById(this.formElementId);
+      return id;
+    }
   };
   return DOM_ElementIDs;
 }
@@ -59,11 +65,22 @@ function bookProcessing(titleP = "", pagesP = 0, readCountP = 0) {
   return book.bookInfo();
 }
 
+/*
+ * Form validation function.
+ * This form will check the input text
+ * Array on the form for the following:
+ * 
+ * 1. Must be numeric
+ * 2. A comma delimiter must be present
+ * 3. If only 1 value is entered then enter the 
+ *    value followed by a comma ie 3,
+ * 
+ */
 function validateForm() {
   console.log("Begin validateForm()");
 
   constants().errorId().innerText = "";
-  constants().errorId().style.color = constants().normalStyleColor;
+  constants().errorId().style.color = constants().blackStyleColor;
 
   console.log(`Array value = ${array.value}`);
   let arrayString = array.value;
@@ -96,20 +113,55 @@ function validateForm() {
   }
   return true;
 }
-
+/*
+ * Controlling function that calls other
+ * functions:
+ * 
+ * 1. arraySum()
+ * 2. bookProcessing()
+ * 3. Updates console.log and screen
+ * 4. Reset the form
+ *
+ */
 function controller(obj) {
   console.log("Begin controller");
   let arrayString = array.value;
   let arrayNum = arrayString.split(",");
-  arraySum(arrayNum);
+  let sum = arraySum(arrayNum);
+  // Print and log the array sum to the log and screen
+  console.log(`SUM - [${arrayString}] = ${sum}`);
+  let text = document.createTextNode(`SUM - [${arrayString}] = ${sum}`);
+  let brElement = document.createElement("br");
+  constants().exerciseOneId().appendChild(text);
+  constants().exerciseOneId().appendChild(brElement);
   let bks = bookProcessing(
     bookTitle.value,
     numberOfPages.value,
     numberTimesRead.value
   );
-  console.log(`Book Info = ${bks}`);
+  let exerciseTwoOutput = `Book Info = ${bks}`;
+  console.log(exerciseTwoOutput);
+  constants().exerciseTwoId().innerText = exerciseTwoOutput;
+  constants().exerciseTwoId().style.color = constants().blueStyleColor;
+
+  // Populate the table
+  books.forEach(populateTable);
+    function populateTable(element, index, array) {
+      let book = element;
+      console.log(`Index Value: ${index}`);
+      console.log(`Book Title: ${book.title}`);
+      console.log(`Book Pages: ${book.pages}`);
+      console.log(`Times Read: ${book.readCount}`);
+    }
+  // Reset the form
+  constants().formId().reset();
 }
 
+/* 
+ * Loop through array using for each
+ * Add to the accumulator variable sum
+ * return sum to the calling function.
+ */
 function arraySum(array) {
   let sum = 0;
   // Loop through the array and sum the elements
@@ -118,12 +170,7 @@ function arraySum(array) {
     // Coerce elements to a number
     sum += element * 1;
   });
-  // Print and log the sum to the log and screen
-  console.log(`SUM - [${arrayString}] = ${sum}`);
-  let text = document.createTextNode(`SUM - [${arrayString}] = ${sum}`);
-  let brElement = document.createElement("br");
-  constants().exerciseOneId().appendChild(text);
-  constants().exerciseOneId().appendChild(brElement);
+  return sum;
 }
 
 // Function to add or get the books from the book object.
