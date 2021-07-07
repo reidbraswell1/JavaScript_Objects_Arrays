@@ -67,6 +67,7 @@ function controller(arrayP, bookTitleP, numberOfPagesP, numberTimesReadP) {
   document
     .getElementById(constants().exerciseOneElementId)
     .appendChild(brElement);
+  // Book Processing will return book.bookInfo()
   let bks = bookProcessing(
     bookTitle.value,
     numberOfPages.value,
@@ -103,7 +104,7 @@ function controller(arrayP, bookTitleP, numberOfPagesP, numberTimesReadP) {
   /*
    * 1. Set the book object to parameters passed in.
    * 2. Add the book object to the books array.
-   * 3. Returns a book info string.
+   * 3. Returns a book.bookInfo().
    *
    */
   function bookProcessing(titleP = "", pagesP = 0, readCountP = 0) {
@@ -117,6 +118,7 @@ function controller(arrayP, bookTitleP, numberOfPagesP, numberTimesReadP) {
       book.readCount = readCountP * 1;
       books.push(book);
     }
+    // Exercise 2
     return book.bookInfo();
   }
   // Reset the form
