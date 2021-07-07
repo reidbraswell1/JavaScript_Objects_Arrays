@@ -110,10 +110,11 @@ function controller(arrayP, bookTitleP, numberOfPagesP, numberTimesReadP) {
   function bookProcessing(titleP = "", pagesP = 0, readCountP = 0) {
     console.log("Begin bookProcessing");
 
-    if (titleP.length == 0 || pagesP <= 0 || readCountP <= 0) {
+    if (titleP.length == 0 || pagesP <= 0 || readCountP < 0) {
       return null;
     } else {
       book.title = titleP;
+      // Coerce pages to a number and readCount to a number
       book.pages = pagesP * 1;
       book.readCount = readCountP * 1;
       books.push(book);
